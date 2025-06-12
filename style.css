@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=WDXL+Lubrifont+TC&display=swap');
+
+*{
+    font-family: 'Outfit', sans-serif;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 120px;
+}
+
+body {
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    background: #181c24;
+    color: #e0e6f0;
+    margin: 0;
+    padding: 40px 0;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.flashcard {
+    width: 320px;
+    height: 200px;
+    perspective: 1200px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 #000a  ;
+    transition: box-shadow 0.3s;
+    overflow: visible;
+    position: relative;
+}
+.flashcard:hover {
+    box-shadow: 0 8px 32px 0 #00ffd0a0, 0 4px 24px 0 #000a;
+}
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-inner, .flashcard-front, .flashcard-back {
+    will-change: transform;
+}
+
+.flashcard.active {
+    animation: clickFlash 0.2s;
+}
+
+@keyframes clickFlash {
+    0% { box-shadow: 0 0 0 0 #00ffd0a0; }
+    50% { box-shadow: 0 0 24px 8px #00ffd0a0; }
+    100% { box-shadow: 0 4px 24px 0 #000a; }
+}
+
+ .flashcard-front span{
+    border: #2d7a46 2px solid;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.flashcard-back span {
+    border: #2d7a46 2px solid;
+    padding: 10px;
+    border-radius: 8px;
+    background: #4159b3;
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+    background: #23283a;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px #0006;
+    padding: 28px 20px 20px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.flashcard-front {
+    z-index: 2;
+    border: 1.5px solid #00ffd0a0;
+    transform: rotateY(0deg);
+}
+.flashcard-back {
+    z-index: 1;
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #23283a 60%, #00ffd022 100%);
+    border: 1.5px solid #00ffd0a0;
+}
+.materia {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: #00ffd0;
+    background: #181c24;
+    border-radius: 6px;
+    padding: 4px 14px;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    box-shadow: 0 2px 8px #00ffd033;
+    letter-spacing: 1px;
+    border: 1px solid #00ffd0a0;
+    z-index: 3;
+}
+@media (max-width: 1000px) {
+  .container {
+    gap: 16px;
+    max-width: 100vw;
+  }
+  .flashcard {
+    width: 95vw;
+    max-width: 340px;
+    height: 180px;
+  }
+}
+
+/* barra de rolagem */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #23283a;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffd033;
+  border-radius: 8px;
+}
